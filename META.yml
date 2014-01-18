@@ -21,5 +21,8 @@ no_index:
     - README.pod
 requires: {}
 resources:
+  bugtracker: https://github.com/trinitum/perl-Number-Closest-XS/issues
+  homepage: https://github.com/trinitum/perl-Number-Closest-XS
   license: http://dev.perl.org/licenses/
-version: 0.01
+  repository: git://github.com/trinitum/perl-Number-Closest-XS
+version: 0.02

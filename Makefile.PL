@@ -26,6 +26,10 @@ WriteMakefile(
         },
         resources => {
 
+            homepage   => 'https://github.com/trinitum/perl-Number-Closest-XS',
+            bugtracker => 'https://github.com/trinitum/perl-Number-Closest-XS/issues',
+            repository => 'git://github.com/trinitum/perl-Number-Closest-XS',
+
             license    => 'http://dev.perl.org/licenses/',
         },
     },

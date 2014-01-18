@@ -2,7 +2,7 @@ package Number::Closest::XS;
 use 5.010;
 use strict;
 use warnings;
-our $VERSION = "0.01";
+our $VERSION = "0.02";
 my $XS_VERSION = $VERSION;
 $VERSION = eval $VERSION;
 
