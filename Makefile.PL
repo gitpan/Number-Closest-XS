@@ -1,7 +1,7 @@
 use 5.010;
 use strict;
 use warnings;
-use ExtUtils::MakeMaker 6.3002;
+use ExtUtils::MakeMaker 6.64;
 
 WriteMakefile(
     NAME                => 'Number::Closest::XS',
@@ -12,11 +12,12 @@ WriteMakefile(
     PL_FILES            => {},
     PREREQ_PM => {
     },
-    BUILD_REQUIRES => {
+    TEST_REQUIRES => {
         'Test::More' => 0.94,
+        'Test::Most' => 0.22,
     },
     CONFIGURE_REQUIRES => {
-        'ExtUtils::MakeMaker' => 6.3002,
+        'ExtUtils::MakeMaker' => 6.64,
     },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean               => { FILES => 'Number-Closest-XS-*' },
