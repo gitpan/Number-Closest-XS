@@ -1,3 +1,6 @@
+0.04 Sun Jan 19 2014 Pavel Shaydo <zwon@cpan.org>
+    - use Newx/Safefree instead of calloc/free
+
 0.03 Sun Jan 19 2014 Pavel Shaydo <zwon@cpan.org>
     - fix dependencies
 

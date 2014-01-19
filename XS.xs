@@ -1,6 +1,7 @@
 #include <EXTERN.h>
 #include <perl.h>
 #include <XSUB.h>
+#include "ppport.h"
 #include <math.h>
 
 struct sv_with_distance {
@@ -53,7 +54,7 @@ nclosx_find_closest_numbers(center, source, ...)
         source_length = av_len(source);
         if (source_length >= 0 && amount > 0) {
             /* amount + 1 is to simplify memmove */
-            sorted = calloc(amount+1, sizeof(struct sv_with_distance));
+            Newx(sorted, amount + 1, struct sv_with_distance);
             for (i=0; i<= source_length; i++) {
                 item.svp = av_fetch(source, i, 0);
                 if (item.svp != NULL) {
@@ -64,7 +65,7 @@ nclosx_find_closest_numbers(center, source, ...)
             for (i=0; i<length; i++) {
                 av_push(RETVAL, newSVsv(*sorted[i].svp));
             }
-            free(sorted);
+            Safefree(sorted);
         }
     OUTPUT:
         RETVAL
@@ -88,8 +89,8 @@ nclosx_find_closest_numbers_around(center, source, ...)
         source_length = av_len(source);
         if (source_length >= 0 && amount > 1) {
             /* amount + 1 is to simplify memmove */
-            left = calloc(amount+1, sizeof(struct sv_with_distance));
-            right = calloc(amount+1, sizeof(struct sv_with_distance));
+            Newx(left, amount + 1, struct sv_with_distance);
+            Newx(right, amount + 1, struct sv_with_distance);
             for (i=0; i<= source_length; i++) {
                 item.svp = av_fetch(source, i, 0);
                 if (item.svp != NULL) {
@@ -141,8 +142,8 @@ nclosx_find_closest_numbers_around(center, source, ...)
                     }
                 }
             }
-            free(left);
-            free(right);
+            Safefree(left);
+            Safefree(right);
         }
     OUTPUT:
         RETVAL
