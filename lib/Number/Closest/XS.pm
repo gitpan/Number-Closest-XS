@@ -1,7 +1,7 @@
 package Number::Closest::XS;
 use strict;
 use warnings;
-our $VERSION = "0.05";
+our $VERSION = "0.06";
 my $XS_VERSION = $VERSION;
 $VERSION = eval $VERSION;
 
@@ -28,8 +28,6 @@ Number::Closest::XS - find numbers closest to a given
 
 =head1 DESCRIPTION
 
-B<Warning:> this is an alpha version. Behaviour is likely to change in the future.
-
 Module provides functions to extract from the list numbers closest to the
 given.
 
@@ -44,13 +42,14 @@ Distance between C<$num> and C<$x> computed as C<abs($num - $x)>.
 
 =head2 find_closest_numbers_around($num, \@list, [$amount])
 
-selects from the I<@list> up to I<$amount> numbers closest to the I<$num>, but
-first tries to ensure that there are numbers from both sides of the I<$num>, so
-if $num is 5, @list is 2, 6, 7 and amount is 2 it will return 2 and 6, despite
-7 being closer to 5. If I<$amount> is not specified, is assumed to be 2.
-Returns reference to the array containing found numbers sorted by the distance
-from the I<$num>.  Distance between C<$num> and C<$x> computed as
-C<abs($num - $x)>.
+selects from the I<@list> up to I<$amount> numbers closest to the I<$num>.
+Tries to select equal amounts of numbers from both sides of the I<$num>, but if
+there are not enough numbers from one side will select more numbers from the
+other. If I<$amount> is odd, then the last number will be closest to I<$num>,
+e.g. if $num is 5, @list is 1, 2, 6, 7, and amount is 3 it will return 2, 6,
+and 7, because 7 is closer to 5 than 1.  If I<$amount> is not specified, is
+assumed to be 2. Returns reference to the array containing closest numbers
+sorted by their values.
 
 =cut
 
