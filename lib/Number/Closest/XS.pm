@@ -1,7 +1,7 @@
 package Number::Closest::XS;
 use strict;
 use warnings;
-our $VERSION = "0.06";
+our $VERSION = "0.07_01";
 my $XS_VERSION = $VERSION;
 $VERSION = eval $VERSION;
 
@@ -18,7 +18,7 @@ Number::Closest::XS - find numbers closest to a given
 
 =head1 VERSION
 
-0.01
+This document describes Number::Closest::XS version 0.07_01
 
 =head1 SYNOPSIS
 
@@ -64,6 +64,10 @@ L<Number::Closest>, L<Number::Closest::NonOO>
 =head1 AUTHOR
 
 Pavel Shaydo C<< <zwon at cpan.org> >>
+
+=head1 THANKS
+
+Thanks to Dana Jacobsen for reporting a bug with handling 64 bit integers and long doubles.
 
 =head1 LICENSE AND COPYRIGHT
 

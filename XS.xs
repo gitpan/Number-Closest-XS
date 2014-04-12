@@ -4,8 +4,21 @@
 #include "ppport.h"
 #include <math.h>
 
+#define NUMBER long double
+#define ABS(x) fabsl(x)
+
+long double sv2number(SV* sv) {
+    long double res;
+    if(SvIOK(sv)) {
+        res = (long double) SvIV(sv);
+    } else if (SvNOK(sv)) {
+        res = SvNV(sv);
+    }
+    return res;
+}
+
 struct sv_with_distance {
-    double distance;
+    NUMBER distance;
     SV **svp;
 };
 
@@ -38,14 +51,14 @@ PROTOTYPES: DISABLE
 
 AV*
 nclosx_find_closest_numbers(center, source, ...)
-        double center;
+        SV* center;
         AV* source;
     PREINIT:
         int length = 0;
         int amount = 1;
         int source_length;
         int i, j;
-        double distance;
+        NUMBER center_num, distance;
         struct sv_with_distance *sorted, item;
     CODE:
         if (items > 2) amount = SvIV(ST(2));
@@ -53,12 +66,13 @@ nclosx_find_closest_numbers(center, source, ...)
         sv_2mortal((SV*)RETVAL);
         source_length = av_len(source);
         if (source_length >= 0 && amount > 0) {
+            center_num = sv2number(center);
             /* amount + 1 is to simplify memmove */
             Newx(sorted, amount + 1, struct sv_with_distance);
             for (i=0; i<= source_length; i++) {
                 item.svp = av_fetch(source, i, 0);
                 if (item.svp != NULL) {
-                    item.distance = fabs(center - SvNV(*item.svp));
+                    item.distance = ABS(center_num - sv2number(*item.svp));
                     add_to_the_list(sorted, &length, amount, &item);
                 }
             }
@@ -72,14 +86,15 @@ nclosx_find_closest_numbers(center, source, ...)
 
 AV*
 nclosx_find_closest_numbers_around(center, source, ...)
-        double center;
+        SV* center;
         AV* source;
     PREINIT:
         int source_length;
         int amount = 2;
         int i, j;
-        double distance;
-        double abs_dist;
+        NUMBER center_num;
+        NUMBER distance;
+        NUMBER abs_dist;
         struct sv_with_distance *left, *right, item;
         int left_len=0, right_len=0, left_pos=0, right_pos=0;
     CODE:
@@ -91,12 +106,13 @@ nclosx_find_closest_numbers_around(center, source, ...)
             /* amount + 1 is to simplify memmove */
             Newx(left, amount + 1, struct sv_with_distance);
             Newx(right, amount + 1, struct sv_with_distance);
+            center_num = sv2number(center);
             for (i=0; i<= source_length; i++) {
                 item.svp = av_fetch(source, i, 0);
                 if (item.svp != NULL) {
-                    item.distance = SvNV(*item.svp) - center;
+                    item.distance = sv2number(*item.svp) - center_num;
                     if (item.distance <= 0) {
-                        item.distance = fabs(item.distance);
+                        item.distance = ABS(item.distance);
                         add_to_the_list(left, &left_len, amount, &item);
                     } else {
                         add_to_the_list(right, &right_len, amount, &item);

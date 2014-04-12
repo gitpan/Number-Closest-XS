@@ -4,7 +4,7 @@
       "Pavel Shaydo <zwon@cpan.org>"
    ],
    "dynamic_config" : 1,
-   "generated_by" : "ExtUtils::MakeMaker version 6.86, CPAN::Meta::Converter version 2.133380",
+   "generated_by" : "ExtUtils::MakeMaker version 6.66, CPAN::Meta::Converter version 2.120921",
    "license" : [
       "perl_5"
    ],
@@ -39,7 +39,7 @@
          "requires" : {}
       }
    },
-   "release_status" : "stable",
+   "release_status" : "testing",
    "resources" : {
       "bugtracker" : {
          "web" : "https://github.com/trinitum/perl-Number-Closest-XS/issues"
@@ -52,5 +52,5 @@
          "url" : "git://github.com/trinitum/perl-Number-Closest-XS"
       }
    },
-   "version" : "0.06"
+   "version" : "0.07_01"
 }
