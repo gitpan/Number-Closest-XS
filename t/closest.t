@@ -25,6 +25,11 @@ subtest find_closest_numbers => sub {
         [ 49, 48, 52, 48 ],
         "duplicate numbers are duplicated in result"
     );
+    eq_or_diff(
+        find_closest_numbers('1.3', [ qw(1.7 1.54 1.11 0.21 Infinity NaN) ], 2),
+        [qw(1.11 1.54)],
+        "strings are coersed to numbers"
+    );
 };
 
 subtest find_closest_numbers_around => sub {

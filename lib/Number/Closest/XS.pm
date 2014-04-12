@@ -1,7 +1,7 @@
 package Number::Closest::XS;
 use strict;
 use warnings;
-our $VERSION = "0.07_01";
+our $VERSION = "0.07_02";
 my $XS_VERSION = $VERSION;
 $VERSION = eval $VERSION;
 
@@ -18,7 +18,7 @@ Number::Closest::XS - find numbers closest to a given
 
 =head1 VERSION
 
-This document describes Number::Closest::XS version 0.07_01
+This document describes Number::Closest::XS version 0.07_02
 
 =head1 SYNOPSIS
 
