@@ -39,7 +39,7 @@
          "requires" : {}
       }
    },
-   "release_status" : "testing",
+   "release_status" : "stable",
    "resources" : {
       "bugtracker" : {
          "web" : "https://github.com/trinitum/perl-Number-Closest-XS/issues"
@@ -52,5 +52,5 @@
          "url" : "git://github.com/trinitum/perl-Number-Closest-XS"
       }
    },
-   "version" : "0.07_03"
+   "version" : "0.08"
 }

@@ -1,7 +1,7 @@
 package Number::Closest::XS;
 use strict;
 use warnings;
-our $VERSION = "0.07_03";
+our $VERSION = "0.08";
 my $XS_VERSION = $VERSION;
 $VERSION = eval $VERSION;
 
@@ -18,7 +18,7 @@ Number::Closest::XS - find numbers closest to a given
 
 =head1 VERSION
 
-This document describes Number::Closest::XS version 0.07_03
+This document describes Number::Closest::XS version 0.08
 
 =head1 SYNOPSIS
 
@@ -60,6 +60,17 @@ __END__
 =head1 SEE ALSO
 
 L<Number::Closest>, L<Number::Closest::NonOO>
+
+=head1 CAVEATS
+
+Internally module coerses all numbers into double or long double depending on
+perl compilation options. If perl was compiled with 64 bit integer support and
+underlying platform does not support long double data type then during
+conversion of integers into double some significant digits may be lost and
+module may produce incorrect results. This only happens for integers that have
+more significant bits than fraction part of the double (usually 52 bit). The
+problem is known to be present on NetBSD and Windows if perl was compiled with
+Microsoft compiler.
 
 =head1 AUTHOR
 

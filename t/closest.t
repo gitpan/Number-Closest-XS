@@ -75,6 +75,17 @@ subtest precision => sub {
           ],
           [ "10.000000000000000003", "10.000000000000000007" ], "correct result with long double";
     };
+    unless(Test::More->builder->is_passing) {
+        diag <<EOT
+#############################################################
+Failure of the precision test indicates the problem described
+in CAVEATS section of the module documentation. You still can
+install and use module by forcing install or skipping tests,
+but check documentation to find out what limitations this
+module has on this platform.
+#############################################################
+EOT
+    }
 };
 
 done_testing;
